@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Account extends Component {
+export default class SavingsAccount extends Component {
   constructor(props) {
     super(props);
 
@@ -9,6 +9,7 @@ export default class Account extends Component {
     }
 
     this.handleDepositClick = this.handleDepositClick.bind(this)
+    this.handleWithdrawlClick = this.handleWithdrawlClick.bind(this)
   }
 
   handleDepositClick(e) {
@@ -17,8 +18,23 @@ export default class Account extends Component {
       console.log("Not a number");
     }
     else {
-      let amount = +this.refs.amount.value;
+      let amount = + this.refs.amount.value;
       let newBalance = this.state.balance + amount;
+      this.setState({
+        balance: newBalance
+      })
+      this.refs.amount.value = '';
+    }
+  }
+
+  handleWithdrawlClick(e) {
+    e.preventDefault();
+    if (isNaN(this.refs.amount.value)) {
+      console.log("Not a number");
+    }
+    else {
+      let amount = - this.refs.amount.value;
+      let newBalance = this.state.balance - amount;
       this.setState({
         balance: newBalance
       })
@@ -38,6 +54,7 @@ export default class Account extends Component {
         <div className={balanceClass}>${this.state.balance}</div>
         <input type="text" placeholder="enter an amount" ref="amount" />
         <input type="button" value="Deposit" onClick={this.handleDepositClick} />
+        <input type="button" value="Withdrawal" onClick={this.handleWithdrawlClick} />
       </div>
     )
   }

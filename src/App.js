@@ -3,6 +3,7 @@ import logo from './ga.png';
 
 import Account from './Account';
 
+
 class App extends Component {
   render() {
     return (
@@ -12,6 +13,7 @@ class App extends Component {
           <div id="title">Bank of GA</div>
         </div>
         <Account name="Checking" />
+        <Account name="Savings" />
         <div className="clear"></div>
       </div>
     );
